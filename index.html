@@ -654,7 +654,7 @@
             c.innerHTML = `<div class="content">
               ${createTags(item.tags)}
               ${createTitle(item.title)}</div>
-              <div class="action">${item.hot_index}</div>
+              ${item.hot_index>0?`<div class="action">${item.hot_index}</div>`:''}
               `;
             c.addEventListener("click", (e) => {
                 e.preventDefault();
