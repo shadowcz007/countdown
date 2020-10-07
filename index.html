@@ -18,34 +18,31 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: aquamarine;
+            background: #202227;
             padding: 32px 0 72px 0px;
             font-family: monospace;
         }
         
         header h3 {
-            font-size: 2.5em;
+            font-size: 1.6em;
             font-weight: 800;
-            color: yellow;
+            color: white;
             margin: 0;
-            text-shadow: 2px 2px #00BCD4;
-            text-align: center;
         }
         
         header p {
-            font-size: 2em;
-            margin: 8px;
-            color: yellow;
-            text-shadow: 2px 2px #00BCD4;
+            font-size: 1em;
+            color: white
         }
         
         #qrcode {
-            outline: 4px solid #00BCD4;
+            margin: 12px;
+            outline: 2px solid #313336;
         }
         
         #tags {
-            width: 100%;
-            margin-bottom: 44px;
+            padding: 24px;
+            margin-bottom: 34px;
             display: flex;
             flex-wrap: wrap;
         }
@@ -190,18 +187,28 @@
 
 <body>
     <header>
-        <h3>「 MIX+人工智能 」<br>周刊</h3>
-        <p>NO.40</p>
-        <div id="qrcode"></div>
+
+        <div style="padding: 18px;display: flex;justify-content: space-around;
+        background: dodgerblue;">
+            <div style="display: flex;
+            flex-direction: column;">
+                <h3>MIX+人工智能 周刊</h3>
+                <p>NO.40</p>
+            </div>
+            <div id="qrcode"></div>
+        </div>
+
+
         <div style="font-size: 18px;
         font-weight: 800;
-        width: 100%;
-        padding-left: 24px;
-        color: #00BCD4;
-        border-bottom: 1px solid #00BCD4;
+        /* letter-spacing: 4px; */
+        /* padding-left: 24px; */
+        color: #03A9F4;
+        border-bottom: 4px solid #2196F3;
         margin-top: 44px;
-        margin-bottom: 12px;">本期主题</div>
+        margin-bottom: 12px;">本 期 主 题</div>
         <div id="tags" class="tags">
+
             <div class="tag" id="tags_all">全部</div>
         </div>
 
