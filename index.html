@@ -40,6 +40,12 @@
             outline: 2px solid #313336;
         }
         
+        #topics {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 24px;
+        }
+        
         #tags {
             padding: 24px;
             margin-bottom: 34px;
@@ -64,15 +70,29 @@
             color: black;
             margin: 12px;
             display: flex;
+            flex-direction: column;
             text-decoration: none;
             box-shadow: 0px 0px 2px 0px #9E9E9E;
             justify-content: space-between;
             align-items: center;
         }
         
+        .card .image {
+            width: 100%;
+            /* padding: 4px; */
+            margin-bottom: 14px;
+        }
+        
+        .card .main {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+        
         .card .title {
             font-size: 12px;
             font-weight: 300;
+            width: 100%;
         }
         
         .card .tags {
@@ -82,7 +102,7 @@
             flex-wrap: wrap;
         }
         
-        .tags .tag {
+        .tag {
             display: flex;
             min-width: 44px;
             padding: 4px;
@@ -95,7 +115,7 @@
             align-items: center;
         }
         
-        .tags .tag:hover {
+        .tag:hover {
             background-color: yellow;
             color: black
         }
@@ -125,6 +145,19 @@
             display: flex;
             /* border-radius: 50%; */
             border: 1px solid gainsboro;
+        }
+        
+        .card .urls {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+        
+        .card .url {
+            text-decoration: none;
+            color: dodgerblue;
+            font-size: 12px;
+            margin: 4px;
         }
     </style>
     <!--<script src="https://cdn.bootcdn.net/ajax/libs/fingerprintjs2/2.1.0/fingerprint2.min.js"></script>-->
@@ -192,8 +225,8 @@
         background: dodgerblue;">
             <div style="display: flex;
             flex-direction: column;">
-                <h3>MIX+人工智能 周刊</h3>
-                <p>NO.40</p>
+                <h3>MIXLAB修炼指南</h3>
+                <p>#2020</p>
             </div>
             <div id="qrcode"></div>
         </div>
@@ -206,444 +239,135 @@
         color: #03A9F4;
         border-bottom: 4px solid #2196F3;
         margin-top: 44px;
-        margin-bottom: 12px;">本 期 主 题</div>
-        <div id="tags" class="tags">
+        margin-bottom: 12px;">研 究 方 向</div>
+        <div id="topics"></div>
 
-            <div class="tag" id="tags_all">全部</div>
+        <div style="font-size: 18px;
+        font-weight: 800;
+        /* letter-spacing: 4px; */
+        /* padding-left: 24px; */
+        color: #03A9F4;
+        border-bottom: 4px solid #2196F3;
+        margin-top: 44px;
+        margin-bottom: 12px;">知 识</div>
+
+        <div id="tags" class="tags">
+            <!--<div class="tag" id="tags_all">全部</div>-->
         </div>
 
     </header>
     <div id="cards"></div>
     <script>
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: "https://t.zsxq.com/ujyFee6",
-            width: 72,
-            height: 72,
-            colorDark: "#0f3126",
-            colorLight: "#eeeeee",
-            correctLevel: QRCode.CorrectLevel.H
-        });
+        if (QRCode) {
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: "https://t.zsxq.com/ujyFee6",
+                width: 72,
+                height: 72,
+                colorDark: "#0f3126",
+                colorLight: "#eeeeee",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        };
+
         //console.log(qrcode)
 
-        let items = [{
-            "title": "推荐\nhttps://williaster.github.io/data-ui",
-            "tags": [
-                "可视化",
-                "开源库"
-            ],
-            "create_time": "2020-10-05T19:31:49.461+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 414458845448588,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/414458845448588"
-        }, {
-            "title": "GitHub - facebookresearch/fr...",
-            "tags": [
-                "动作捕捉",
-                "三维重建",
-                "facebook",
-                "开源项目"
-            ],
-            "create_time": "2020-10-05T19:26:06.906+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 182245525888422,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/182245525888422"
-        }, {
-            "title": "Youtube博主LegoEddy用乐高制作了一系列15帧/秒的卡通定格动画。更多疯...",
-            "tags": [
-                "补帧",
-                "视频",
-                "DAIN"
-            ],
-            "create_time": "2020-10-05T15:26:17.857+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 215528511252111,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/215528511252111"
-        }, {
-            "title": "让消防员在浓烟滚滚的火场中看清一切\n\n以“能拯救生命的超能力”为座右铭运作的公司Qwake T...",
-            "tags": [
-                "AR",
-                "应用场景"
-            ],
-            "create_time": "2020-10-05T15:20:27.268+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 414458411548848,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/414458411548848"
-        }, {
-            "title": "社群加工作人员：FAGU_L\n备注：知识星球，智慧城市\n\n超越期望的AI CITY ？  | Mixla...",
-            "tags": [
-                "未来城市"
-            ],
-            "create_time": "2020-10-04T17:31:50.857+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 582251248242814,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/582251248242814"
-        }, {
-            "title": "更大的模型并不总是更好的模型\n\ntinyML典型的应用场景：\n\n1 关键字发现\n大多数人已经熟悉此应用...",
-            "tags": [
-                "tinyML"
-            ],
-            "create_time": "2020-10-02T20:28:58.597+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 815528588124512,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/815528588124512"
-        }, {
-            "title": "Portrait Light\n\nAndroid版Google相册新...",
-            "tags": [
-                "摄影",
-                "肖像光",
-                "智能产品",
-                "图像编辑",
-                "谷歌"
-            ],
-            "create_time": "2020-10-02T20:21:39.526+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 414458488158448,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/414458488158448"
-        }, {
-            "title": "Toonify Yourself \n\ndeep learnin...",
-            "tags": [
-                "智能产品",
-                "GAN",
-                "开源项目",
-                "styleGAN"
-            ],
-            "create_time": "2020-10-01T19:31:32.412+0800",
-            "likes_count": 2,
-            "comments_count": 0,
-            "id": 582251221588484,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/582251221588484"
-        }, {
-            "title": "Synthesia - AI video generation platform\n\nAI video ge...",
-            "tags": [
-                "智能产品"
-            ],
-            "create_time": "2020-10-01T19:26:56.033+0800",
-            "likes_count": 1,
-            "comments_count": 0,
-            "id": 414458448512588,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/414458448512588"
-        }, {
-            "title": "MIXLAB文章集锦",
-            "tags": [
-                "资料",
-                "MIXLAB"
-            ],
-            "create_time": "2020-10-01T17:49:45.777+0800",
-            "likes_count": 1,
-            "comments_count": 0,
-            "id": 815525111412212,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/815525111412212"
-        }, {
-            "title": "在树莓派上进行扑克牌的检测和识别。\n\n项目地址：\nGitHub - Edj...",
-            "tags": [
-                "opencv",
-                "扑克牌",
-                "开源项目"
-            ],
-            "create_time": "2020-09-30T08:07:55.268+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 414454251818828,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/414454251818828"
-        }, {
-            "title": "OpenCV是一个强大的图像和视频处理库，在这篇文章中，将...",
-            "tags": [
-                "opencv",
-                "教程",
-                "高斯背景差法",
-                "运动热图"
-            ],
-            "create_time": "2020-09-30T08:00:51.218+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 182242148518542,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/182242148518542"
-        }, {
-            "title": "推荐一份YouTube上最火的 OpenCV-Python 入门视频教程，该教程由Cod...",
-            "tags": [
-                "opencv",
-                "教程"
-            ],
-            "create_time": "2020-09-30T07:57:42.266+0800",
-            "likes_count": 1,
-            "comments_count": 0,
-            "id": 182242148514852,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/182242148514852"
-        }, {
-            "title": "讲述了一个优秀的可视化项目背后一步步的实现过程\n\nData Sketches",
-            "tags": [
-                "可视化"
-            ],
-            "create_time": "2020-09-28T07:54:32.496+0800",
-            "likes_count": 1,
-            "comments_count": 0,
-            "id": 815525244124482,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/815525244124482"
-        }, {
-            "title": "Alex Strook\n\n来源：https://twitter.com/AlexStrook/...",
-            "tags": [
-                "游戏",
-                "技术美术"
-            ],
-            "create_time": "2020-09-23T09:34:49.824+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 182258884522222,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/182258884522222"
-        }, {
-            "title": "本方法来自ECCV2020的论文，提出了一种基于流的视频补全算法。...",
-            "tags": [
-                "ECCV",
-                "2020",
-                "视频补全",
-                "视频"
-            ],
-            "create_time": "2020-09-23T08:57:27.978+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 815581118142252,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/815581118142252"
-        }, {
-            "title": "跨场景预测视觉重要性\nPredicting Visu...",
-            "tags": [
-                "预测",
-                "视觉重要性",
-                "平面设计",
-                "数据集",
-                "智能设计"
-            ],
-            "create_time": "2020-09-21T18:50:38.666+0800",
-            "likes_count": 2,
-            "comments_count": 0,
-            "id": 215581485442151,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/215581485442151"
-        }, {
-            "title": "第三期视频 VR空间记忆剧场 \n建筑师对话神经内科医生\n\n\n\n\n复制这段内容后打开...",
-            "tags": [
-                "AR",
-                "VR",
-                "闪聊"
-            ],
-            "create_time": "2020-09-20T23:00:05.828+0800",
-            "likes_count": 1,
-            "comments_count": 0,
-            "id": 815581212214842,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/815581212214842"
-        }, {
-            "title": "利用辛普森悖论揭示行为数据中有趣的模式。总体来看，呈现一定的规律，然而当把数据拆到更小的类别来看的时...",
-            "tags": [
-                "辛普森悖论"
-            ],
-            "create_time": "2020-09-20T11:38:40.483+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 414481525182248,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/414481525182248"
-        }, {
-            "title": "图中是中国和意大利的新冠死亡率，每个年龄段，中国的都大于意大利，但意大利的总死亡率却比中国...",
-            "tags": [
-                "辛普森悖论",
-                "统计学"
-            ],
-            "create_time": "2020-09-19T09:35:05.142+0800",
-            "likes_count": 3,
-            "comments_count": 0,
-            "id": 182258458412882,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/182258458412882"
-        }, {
-            "title": "将机器学习技术应用于大量不同的数据集，从而更好地将药物和其它健康干预措施与个体患者相...",
-            "tags": [
-                "医疗",
-                "因果关系",
-                "应用"
-            ],
-            "create_time": "2020-09-19T09:32:12.124+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 215581281221411,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/215581281221411"
-        }, {
-            "title": "什么叫\"跨域\"？\n\n我们之前做的推荐可能是单域推荐比较多，也就是\"房产\"只推荐\"房产\"的部...",
-            "tags": [
-                "跨域推荐",
-                "推荐系统"
-            ],
-            "create_time": "2020-09-19T09:20:25.158+0800",
-            "likes_count": 1,
-            "comments_count": 0,
-            "id": 182258458445822,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/182258458445822"
-        }, {
-            "title": "遗传算法以独特的方式融合了生物学和计算机科学，虽然不一定是最快的算法，但一定是跨学科的...",
-            "tags": [
-                "遗传算法",
-                "DEAP",
-                "算法"
-            ],
-            "create_time": "2020-09-15T08:04:58.144+0800",
-            "likes_count": 1,
-            "comments_count": 0,
-            "id": 414482152128518,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/414482152128518"
-        }, {
-            "title": "第二期主题 nocode",
-            "tags": [
-                "nocode",
-                "lowcode",
-                "低代码",
-                "闪聊活动"
-            ],
-            "create_time": "2020-09-15T05:14:46.922+0800",
-            "likes_count": 4,
-            "comments_count": 0,
-            "id": 582214854514444,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/582214854514444"
-        }, {
-            "title": "通过airtable，基于gpt3的开放api，构建了一个 ...",
-            "tags": [
-                "gpt-3",
-                "lowcode",
-                "推荐系统",
-                "电影"
-            ],
-            "create_time": "2020-09-10T08:14:14.099+0800",
-            "likes_count": 0,
-            "comments_count": 0,
-            "id": 215584824541421,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/215584824541421"
-        }, {
-            "title": "表格即数据库，也是一种lowcode方式；...",
-            "tags": [
-                "产品",
-                "表格",
-                "数据库",
-                "lowcode",
-                "airtable",
-                "低成本"
-            ],
-            "create_time": "2020-09-10T08:12:24.166+0800",
-            "likes_count": 1,
-            "comments_count": 0,
-            "id": 815584824541582,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/815584824541582"
-        }, {
-            "title": "MeiliSearch 是一个快捷、易用且易部署的全文搜索引擎，支持自定义搜索和索引，支持容...",
-            "tags": [
-                "搜索引擎",
-                "开源项目"
-            ],
-            "create_time": "2020-09-08T08:49:48.613+0800",
-            "likes_count": 2,
-            "comments_count": 0,
-            "id": 215551424544251,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/215551424544251"
-        }, {
-            "title": "数字化妆技术\nhttps://arxiv.org/pdf/1610.04861.pdf",
-            "tags": [
-                "美妆",
-                "人脸识别",
-                "数字化妆"
-            ],
-            "create_time": "2020-09-05T11:04:08.352+0800",
-            "likes_count": 2,
-            "comments_count": 0,
-            "id": 414441881121888,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/414441881121888"
-        }, {
-            "title": "我们是怎么确定“香蕉”这一概念对应的颜色的？本文基于图像统计，试图找到颜色概念关联的色彩模型。\n\nh...",
-            "tags": [
-                "色彩",
-                "配色"
-            ],
-            "create_time": "2020-09-05T10:59:59.829+0800",
-            "likes_count": 1,
-            "comments_count": 0,
-            "id": 815551881142422,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/815551881142422"
-        }, {
-            "title": "以一位十几岁女孩Lzzy的梦境为例，和许多人一样，Lzzy梦见了一些不太可能发生的情...",
-            "tags": [
-                "解梦",
-                "nlp",
-                "可视化"
-            ],
-            "create_time": "2020-09-04T07:54:28.313+0800",
-            "likes_count": 2,
-            "comments_count": 0,
-            "id": 182228284845412,
-            "url": "https://wx.zsxq.com/dweb2/index/topic_detail/182228284845412"
-        }];
+        let items = [];
+        //items =
 
         //new LeaderLine(LeaderLine.mouseHoverAnchor(document.querySelector('.tag')), document.querySelector('#qrcode'));
 
-        let tags = {};
-        items.forEach(item => {
-            item.tags.forEach(t => {
-                tags[t] = tags[t] ? (tags[t] + 1) : 1;
+        let topics = ['未来城市', '视频', '工具', '人工智能辅助设计',
+            '智能设计', '色彩', '字体', '游戏', '因果关系', '归因', '数据科学', '端智能',
+            '前端智能', '虚拟偶像', '艺术', '体育', '舞蹈', '摄影', '法律',
+            '美食', '社交', '生物黑客', '教育', '职业规划', 'AR', 'VR',
+            '谷歌', '设计', '宁静技术', '三维重建', '智能产品'
+        ];
+        let topicsDom = document.getElementById("topics");
+        Array.from(topics, t => {
+            let c = createTag(t, async() => {
+                await getDataAndStart(t);
             });
+            topicsDom.appendChild(c);
         });
-        tags_list = [];
-        for (let t in tags) {
-            if (tags[t]) {
-                tags_list.push({
-                    key: t,
-                    value: tags[t]
-                });
-            }
+
+        async function getDataAndStart(tag) {
+            var items = await getData(tag);
+            start(items);
         };
-        tags_list = tags_list.sort((b, a) => {
-            return a.value - b.value
-        });
-        tags_list = Array.from(tags_list, t => {
-            return t.key;
-        }).slice(0, 10);
 
+        //getDataAndStart();
 
-        let tagsDom = document.querySelector("#tags");
+        function start(items) {
 
-        Array.from(tags_list, t => {
-            t = createTag(t, (e) => {
-                console.log(e.target.innerText);
-                let text = e.target.innerText;
-                Array.from(document.querySelectorAll(".content"), c => {
-                    c.parentElement.style.display = "none";
+            let tags = {};
+            items.forEach(item => {
+                item.tags.forEach(t => {
+                    tags[t] = tags[t] ? (tags[t] + 1) : 1;
                 });
-                Array.from(document.querySelectorAll(".content"), c => {
-                    if (c.querySelector("div[data-tag=" + text + "]")) {
-                        c.parentElement.style.display = "flex";
-                        _hmt.push(['_trackEvent', '标签', 'click', text, 1]);
-                    };
+            });
+            tags_list = [];
+            for (let t in tags) {
+                if (tags[t]) {
+                    tags_list.push({
+                        key: t,
+                        value: tags[t]
+                    });
+                }
+            };
+            tags_list = tags_list.sort((b, a) => {
+                return a.value - b.value
+            });
+            tags_list = Array.from(tags_list, t => {
+                return t.key;
+            }).slice(0, 10);
+
+
+            let tagsDom = document.querySelector("#tags");
+            tagsDom.innerHTML = "";
+
+            Array.from(tags_list, t => {
+                t = createTag(t, (e) => {
+                    console.log(e.target.innerText);
+                    let text = e.target.innerText;
+                    Array.from(document.querySelectorAll(".content"), c => {
+                        c.parentElement.style.display = "none";
+                    });
+                    Array.from(document.querySelectorAll(".content"), c => {
+                        if (c.querySelector("div[data-tag=" + text + "]")) {
+                            c.parentElement.style.display = "flex";
+                            _hmt.push(['_trackEvent', '标签', 'click', text, 1]);
+                        };
+                    });
+
                 });
+                tagsDom.appendChild(t);
+            });
+
+            /*document.getElementById("tags_all").addEventListener("click", (e) => {
+                e.preventDefault();
+                Array.from(document.querySelectorAll(".content"), c => {
+                    c.parentElement.style.display = "flex";
+                });
+            })
+            */
+
+            let cardsDom = document.querySelector("#cards");
+            cardsDom.innerHTML = "";
+
+            items = items.sort((b, a) => {
+                return (a.likes_count + a.comments_count) - (b.likes_count + b.comments_count)
+            });
+
+            Array.from(items, item => {
+                item.hot_index = item.likes_count / (1 + items[0].likes_count);
+                if (item.title != "" || item.urls.length > 0) {
+                    //console.log(item)
+                    let c = createCard(item);
+                    cardsDom.appendChild(c);
+                }
 
             });
-            tagsDom.appendChild(t);
-        });
-
-        document.getElementById("tags_all").addEventListener("click", (e) => {
-            e.preventDefault();
-            Array.from(document.querySelectorAll(".content"), c => {
-                c.parentElement.style.display = "flex";
-            });
-        })
-
-        let cardsDom = document.querySelector("#cards");
-
-        items = items.sort((b, a) => {
-            return (a.likes_count + a.comments_count) - (b.likes_count + b.comments_count)
-        });
-
-        Array.from(items, item => {
-            item.hot_index = item.likes_count / (1 + items[0].likes_count);
-            let c = createCard(item);
-            cardsDom.appendChild(c);
-        });
+        }
 
 
         function createCard(item) {
@@ -651,20 +375,27 @@
             c.className = "card";
             //c.href = item.url;
             c.setAttribute("data-item", JSON.stringify(item));
-            c.innerHTML = `<div class="content">
-              ${createTags(item.tags)}
-              ${createTitle(item.title)}</div>
-              ${item.hot_index>0?`<div class="action">${item.hot_index}</div>`:''}
+            c.innerHTML = `
+            ${item.base64?createImage(item.base64):""}
+            <div class="main">
+                <div class="content" style="${item.hot_index>0?'':'width:100%'}">
+                ${createTags(item.tags)}
+                </div>
+              ${item.hot_index>0?`<div class="action">${item.hot_index.toFixed(2)}</div>`:''}
+            </div>
+            ${createTitle(item.title)}
+              ${item.urls?createURLs(item.urls):''}
               `;
             c.addEventListener("click", (e) => {
                 e.preventDefault();
                 if (!e.target.getAttribute('data-tag')) {
                     _hmt.push(['_trackEvent', '卡片', 'click', item.title, 1]);
                     //console.log(e.target.getAttribute('data-tag'))
-                    let a = confirm(`跳转至${item.url}`);
+                    /*let a = confirm(`跳转至${item.url}`);
                     if (a == true) {
                         window.location.href = item.url;
                     };
+                    */
                 } else {
                     _hmt.push(['_trackEvent', '标签', 'click', e.target.getAttribute('data-tag'), 1]);
                 }
@@ -673,12 +404,22 @@
             return c;
         }
 
+        function createImage(url){
+
+           return `<img class="image" src="${url}" onerror="handleImageError(this)"/>`
+            
+        }
+
+        function handleImageError(e){
+            e.style.display="none";
+        }
+
         function createHot(s) {
             return `<div class="hot_index">${s}</div>`;
         }
 
         function createTitle(t) {
-            return `<h4 class="title">${t}</h4>`
+            return `<h4 class="title">${t.replace(/\n/ig,'<br>').slice(0,140)+(t.length>140?'...':'')}</h4>`
         }
 
         function createTags(tags) {
@@ -700,6 +441,27 @@
 
             return c;
         }
+
+        function createURLs(urls){
+            return `<div class="urls">${Array.from(urls,u=>{
+                return createURL(u.url,u.title)
+            }).join("")}</div>`
+        };
+
+        function createURL(url,title){
+            return `<a class="url" href="${url}" target="_blank">${title}</a>`;
+        }
+
+       async function getData(t){
+        return new Promise(function(resolve, reject){
+            fetch('./data/'+t+'.json').then(r=>{
+                return  r.json()
+            }).then(r=>{
+                //console.log(r);
+                resolve(r);
+            });
+        })
+        };
 
 
         //从知识星球导出
@@ -730,7 +492,53 @@
                 url: 'https://wx.zsxq.com/dweb2/index/topic_detail/' + t.topic_id
             })
         });
-        */
+
+          //tag 页面导出 主题对应的素材; talk.files 文件待处理
+
+res = [];
+temp1.forEach((t, i) => {
+    var talk = t.talk,
+        id = t.topic_id;
+    //if (!talk){console.log(t)};
+    if (talk && talk.owner.name == 'shadow' && t.sticky==false) {
+        var text = talk.text,
+            images = talk.images;
+        var div = document.createElement('div');
+        div.innerHTML = text;
+        //console.log(div.querySelectorAll('e[type=hashtag]'));
+        var tags = div.querySelectorAll('e[type=hashtag]');
+        if (tags) {
+
+            tags = Array.from(tags, t => {
+                t=decodeURIComponent(t.title);
+                return t.slice(1,t.length-1);
+            })
+        }
+        var urls = div.querySelectorAll('e[type=web]');
+        if (urls) {
+            urls = Array.from(urls, u => {
+
+                return { url: decodeURIComponent(u.getAttribute('href')), title: decodeURIComponent(u.getAttribute('title').replace(/\+/ig, ' ')) }
+            })
+        }
+
+        res.push({
+            id: id,
+            title: div.innerText.trim(),
+            likes_count: t.likes_count,
+            comments_count: t.comments_count,
+            readers_count: t.readers_count,
+            reading_count: t.reading_count,
+            rewards_count: t.rewards_count,
+            images: images,
+            tags: tags,
+            urls: urls,
+            create_time: t.create_time
+        })
+    }
+})
+
+   */
     </script>
 
 </body>
