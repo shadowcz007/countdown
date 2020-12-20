@@ -5,161 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIXLAB无界社区</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #eeeeee;
-            overflow-x: hidden;
-        }
-        
-        header {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: #202227;
-            padding: 32px 0 72px 0px;
-            font-family: monospace;
-        }
-        
-        header h3 {
-            font-size: 1.6em;
-            font-weight: 800;
-            color: white;
-            margin: 0;
-        }
-        
-        header p {
-            font-size: 1em;
-            color: white
-        }
-        
-        #qrcode {
-            margin: 12px;
-            outline: 2px solid #313336;
-        }
-        
-        #topics {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 24px;
-        }
-        
-        #tags {
-            padding: 24px;
-            margin-bottom: 34px;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        #tags .tags {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        #cards {
-            margin-top: -98px;
-        }
-        
-        .card {
-            border-radius: 4px;
-            padding: 12px;
-            background: white;
-            color: black;
-            margin: 12px;
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            box-shadow: 0px 0px 2px 0px #9E9E9E;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .card .image {
-            width: 100%;
-            /* padding: 4px; */
-            margin-bottom: 14px;
-        }
-        
-        .card .main {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-        }
-        
-        .card .title {
-            font-size: 12px;
-            font-weight: 300;
-            width: 100%;
-        }
-        
-        .card .tags {
-            display: flex;
-            justify-content: start;
-            align-items: start;
-            flex-wrap: wrap;
-        }
-        
-        .tag {
-            display: flex;
-            min-width: 44px;
-            padding: 4px;
-            font-size: 15px;
-            color: white;
-            background: #9E9E9E;
-            font-weight: 400;
-            margin: 4px;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .tag:hover {
-            background-color: yellow;
-            color: black
-        }
-        
-        .card .hot_index {
-            font-size: 12px;
-            background: #e9edff;
-            display: flex;
-            width: 24px;
-            justify-content: center;
-            color: red;
-            /* padding: 0px; */
-            margin: 4px;
-        }
-        
-        .card .content {
-            width: 70%;
-        }
-        
-        .card .action {
-            width: 44px;
-            height: 44px;
-            /* background: #cacaca; */
-            color: #cccccc;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-            /* border-radius: 50%; */
-            border: 1px solid gainsboro;
-        }
-        
-        .card .urls {
-            display: flex;
-            width: 100%;
-            flex-direction: column;
-        }
-        
-        .card .url {
-            text-decoration: none;
-            color: dodgerblue;
-            font-size: 12px;
-            margin: 4px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css">
     <!--<script src="https://cdn.bootcdn.net/ajax/libs/fingerprintjs2/2.1.0/fingerprint2.min.js"></script>-->
     <script>
         var _hmt = _hmt || [];
@@ -219,327 +65,131 @@
 </head>
 
 <body>
-    <header>
 
-        <div style="padding: 18px;display: flex;justify-content: space-around;
+    <!-- <div id="cards"></div> -->
+    <main class="masonry">
+        <div id="header-image" class="item card">
+            <img src="./assets/logo.svg" alt="">
+        </div>
+        <div class="item card">
+            <img src="./assets/2020mixlab.jpg" alt="">
+            <p>2020年度聚会@上海</p>
+        </div>
+        <div class="item card">
+            <img src="./assets/2020mixlab2.webp" alt="">
+        </div>
+        <div class="item card">
+            <div id="background">
+                <h4>让每个人无限可能</h4>
+            </div>
+        </div>
+        <div class="item card">
+            <img src="./assets/logo_text_long_invert169.png" alt="">
+        </div>
+        <div class="item card">
+            <img src="./assets/2019mixlab.jpg" alt="">
+        </div>
+        <div class="item card">
+            <img src="./assets/30天ai训练营.svg" alt="">
+            <p>30天AI训练营</p>
+        </div>
+        <div class="item card">
+            <img src="./assets/f266754e6897952706f5e37f7229136e26c6c3734b97a765cbb027e2e210a120.png" alt="">
+        </div>
+        <div class="item card">
+            <div style="font-size: 18px;
+                font-weight: 800;
+                /* letter-spacing: 4px; */
+                /* padding-left: 24px; */
+                color: #03A9F4;
+                border-bottom: 4px solid #2196F3;
+                margin-top: 44px;
+                margin-bottom: 12px;">研 究 方 向</div>
+            <div id="topics"></div>
+        </div>
+        <div class="item card">
+            <div style="padding: 18px;display: flex;justify-content: space-around;
         background: dodgerblue;">
-            <div style="display: flex;
+                <div style="display: flex;
             flex-direction: column;">
-                <h3>MIXLAB修炼指南</h3>
-                <p>#2020</p>
-            </div>
-            <div id="qrcode"></div>
-        </div>
-
-
-        <div style="font-size: 18px;
-        font-weight: 800;
-        /* letter-spacing: 4px; */
-        /* padding-left: 24px; */
-        color: #03A9F4;
-        border-bottom: 4px solid #2196F3;
-        margin-top: 44px;
-        margin-bottom: 12px;">研 究 方 向</div>
-        <div id="topics"></div>
-
-        <div style="font-size: 18px;
-        font-weight: 800;
-        /* letter-spacing: 4px; */
-        /* padding-left: 24px; */
-        color: #03A9F4;
-        border-bottom: 4px solid #2196F3;
-        margin-top: 44px;
-        margin-bottom: 12px;">知 识</div>
-
-        <div id="tags" class="tags">
-            <!--<div class="tag" id="tags_all">全部</div>-->
-        </div>
-
-    </header>
-    <div id="cards"></div>
-    <script>
-        if (QRCode) {
-            var qrcode = new QRCode(document.getElementById("qrcode"), {
-                text: "https://t.zsxq.com/ujyFee6",
-                width: 72,
-                height: 72,
-                colorDark: "#0f3126",
-                colorLight: "#eeeeee",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-        };
-
-        //console.log(qrcode)
-
-        let items = [];
-        //items =
-
-        //new LeaderLine(LeaderLine.mouseHoverAnchor(document.querySelector('.tag')), document.querySelector('#qrcode'));
-
-        let topics = ['未来城市', '视频', '工具', '人工智能辅助设计',
-            '智能设计', '色彩', '字体', '游戏', '因果关系', '归因', '数据科学', '端智能',
-            '前端智能', '虚拟偶像', '艺术', '体育', '舞蹈', '摄影', '法律',
-            '美食', '社交', '生物黑客', '教育', '职业规划', 'AR', 'VR',
-            '谷歌', '设计', '宁静技术', '三维重建', '智能产品'
-        ];
-        let topicsDom = document.getElementById("topics");
-        Array.from(topics, t => {
-            let c = createTag(t, async() => {
-                await getDataAndStart(t);
-            });
-            topicsDom.appendChild(c);
-        });
-
-        async function getDataAndStart(tag) {
-            var items = await getData(tag);
-            start(items);
-        };
-
-        //getDataAndStart();
-
-        function start(items) {
-
-            let tags = {};
-            items.forEach(item => {
-                item.tags.forEach(t => {
-                    tags[t] = tags[t] ? (tags[t] + 1) : 1;
-                });
-            });
-            tags_list = [];
-            for (let t in tags) {
-                if (tags[t]) {
-                    tags_list.push({
-                        key: t,
-                        value: tags[t]
-                    });
-                }
-            };
-            tags_list = tags_list.sort((b, a) => {
-                return a.value - b.value
-            });
-            tags_list = Array.from(tags_list, t => {
-                return t.key;
-            }).slice(0, 10);
-
-
-            let tagsDom = document.querySelector("#tags");
-            tagsDom.innerHTML = "";
-
-            Array.from(tags_list, t => {
-                t = createTag(t, (e) => {
-                    console.log(e.target.innerText);
-                    let text = e.target.innerText;
-                    Array.from(document.querySelectorAll(".content"), c => {
-                        c.parentElement.style.display = "none";
-                    });
-                    Array.from(document.querySelectorAll(".content"), c => {
-                        if (c.querySelector("div[data-tag=" + text + "]")) {
-                            c.parentElement.style.display = "flex";
-                            _hmt.push(['_trackEvent', '标签', 'click', text, 1]);
-                        };
-                    });
-
-                });
-                tagsDom.appendChild(t);
-            });
-
-            /*document.getElementById("tags_all").addEventListener("click", (e) => {
-                e.preventDefault();
-                Array.from(document.querySelectorAll(".content"), c => {
-                    c.parentElement.style.display = "flex";
-                });
-            })
-            */
-
-            let cardsDom = document.querySelector("#cards");
-            cardsDom.innerHTML = "";
-
-            items = items.sort((b, a) => {
-                return (a.likes_count + a.comments_count) - (b.likes_count + b.comments_count)
-            });
-
-            Array.from(items, item => {
-                item.hot_index = item.likes_count / (1 + items[0].likes_count);
-                if (item.title != "" || item.urls.length > 0) {
-                    //console.log(item)
-                    let c = createCard(item);
-                    cardsDom.appendChild(c);
-                }
-
-            });
-        }
-
-
-        function createCard(item) {
-            let c = document.createElement("a");
-            c.className = "card";
-            //c.href = item.url;
-            c.setAttribute("data-item", JSON.stringify(item));
-            c.innerHTML = `
-            ${item.base64?createImage(item.base64):""}
-            <div class="main">
-                <div class="content" style="${item.hot_index>0?'':'width:100%'}">
-                ${createTags(item.tags)}
+                    <h3>「跨学科·人工智能」知识库</h3>
+                    <p>#2020</p>
                 </div>
-              ${item.hot_index>0?`<div class="action">${item.hot_index.toFixed(2)}</div>`:''}
+                <div id="qrcode"></div>
             </div>
-            ${createTitle(item.title)}
-              ${item.urls?createURLs(item.urls):''}
-              `;
-            c.addEventListener("click", (e) => {
-                e.preventDefault();
-                if (!e.target.getAttribute('data-tag')) {
-                    _hmt.push(['_trackEvent', '卡片', 'click', item.title, 1]);
-                    //console.log(e.target.getAttribute('data-tag'))
-                    /*let a = confirm(`跳转至${item.url}`);
-                    if (a == true) {
-                        window.location.href = item.url;
-                    };
-                    */
-                } else {
-                    _hmt.push(['_trackEvent', '标签', 'click', e.target.getAttribute('data-tag'), 1]);
-                }
+        </div>
+        <div class="item card">
+            <img src="./assets//v1.webp" alt="">
+            <p>《人人可教的AI》 <br>shadow: Mixlab 创建者</p>
+        </div>
+        <div class="item card">
+            <img src="./assets/v2.webp" alt="">
+            <p>《音乐人工智能怎么玩？》<br>陈世哲：Soundbug 创始人</p>
+        </div>
+        <div class="item card">
+            <img src="./assets/v3.webp" alt="">
+            <p>建筑人工智能前沿<br>郑豪：宾夕法尼亚大学 博士</p>
+        </div>
 
-            })
-            return c;
-        }
+        <div class="item card">
+            <img src="./assets/v4.webp" alt="">
+            <p>《创意编程的探索与实践》
+                <br>fangye: Mixlab 共建者</p>
+        </div>
 
-        function createImage(url){
+        <div class="item card">
+            <img src="./assets/v5.webp" alt="">
+            <p>视频自动剪辑<br>大铮：复旦大学博士 （兼今晚的帅气主持）
+            </p>
+        </div>
+        <div class="item card">
+            <img src="./assets/v6.webp" alt="">
+            <p>VR 空间叙事<br>傅嵌华：伦敦大学学院 硕士
+            </p>
+        </div>
+        <div class="item card">
+            <img src="./assets/v7.webp" alt="">
+            <p>《超越游戏的“游戏引擎”》<br>罗超：GGV 投资人
+            </p>
+        </div>
+        <div class="item card">
+            <img src="./assets/v8.png" alt="">
+            <p>《缝合工程》<br>孝吾：UDMLAB创始人
+            </p>
+        </div>
 
-           return `<img class="image" src="${url}" onerror="handleImageError(this)"/>`
-            
-        }
+        <div class="item card">
+            <img src="./assets/v9.webp" alt="">
+            <p>《无人驾驶》<br>喻川：PIX 创始人
+            </p>
+        </div>
+        <div class="item card">
+            <img src="./assets/v10.webp" alt="">
+            <p>《产业互联网》<br> baoling：腾讯云交互设计师
+            </p>
+        </div>
+        <div class="item card">
+            <img src="./assets/v11.webp" alt="">
+            <p>Personal Fabrication<br>张然：IST Austria 计算机图形学博士
+            </p>
+        </div>
+        <div class="item card">
+            <img src="./assets/v12.png" alt="">
+            <p>AI 方仔照相馆<br>-核心成员 向阳
+            </p>
+        </div>
+        <div class="item card">
+            <img src="./assets/v13.png" alt="">
+            <p>VR 虚拟空间<br>虚拟空间建筑师 - 胡鹏
+            </p>
+        </div>
+        <div class="item card">
+            <img src="./assets/v14.webp" alt="">
+            <p>2020合影</p>
+        </div>
+    </main>
 
-        function handleImageError(e){
-            e.style.display="none";
-        }
-
-        function createHot(s) {
-            return `<div class="hot_index">${s}</div>`;
-        }
-
-        function createTitle(t) {
-            return `<h4 class="title">${t.replace(/\n/ig,'<br>').slice(0,140)+(t.length>140?'...':'')}</h4>`
-        }
-
-        function createTags(tags) {
-            return `<div class="tags">${Array.from(tags,t=>{
-                return createTag(t).outerHTML}).join("")}</div>`
-        }
-
-        function createTag(tag, fun) {
-            let c = document.createElement("div");
-            c.className = "tag";
-            c.innerHTML = `<div data-tag="${tag}">${tag}</div>`;
-
-            if (fun) {
-                c.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    fun(e);
-                });
-            };
-
-            return c;
-        }
-
-        function createURLs(urls){
-            return `<div class="urls">${Array.from(urls,u=>{
-                return createURL(u.url,u.title)
-            }).join("")}</div>`
-        };
-
-        function createURL(url,title){
-            return `<a class="url" href="${url}" target="_blank">${title}</a>`;
-        }
-
-       async function getData(t){
-        return new Promise(function(resolve, reject){
-            fetch('./data/'+t+'.json').then(r=>{
-                return  r.json()
-            }).then(r=>{
-                //console.log(r);
-                resolve(r);
-            });
-        })
-        };
-
-
-        //从知识星球导出
-        /*
-        var res = [];
-        Array.from(temp1, t => {
-            res.push({
-                title: (() => {
-                    let ts = t.title.split("#");
-                    return ts[ts.length - 1].trim();
-                })(),
-                tags: (() => {
-                    let ts = t.title.split("#");
-                    ts = ts.slice(0, ts.length - 1);
-                    var tags = [];
-                    Array.from(ts, t => {
-                        t = t.trim();
-                        if (t) {
-                            tags.push(t)
-                        };
-                    })
-                    return tags;
-                })(),
-                create_time:t.create_time,
-                likes_count:t.likes_count,
-                comments_count:t.comments_count,
-                id: t.topic_id,
-                url: 'https://wx.zsxq.com/dweb2/index/topic_detail/' + t.topic_id
-            })
-        });
-
-          //tag 页面导出 主题对应的素材; talk.files 文件待处理
-
-res = [];
-temp1.forEach((t, i) => {
-    var talk = t.talk,
-        id = t.topic_id;
-    //if (!talk){console.log(t)};
-    if (talk && talk.owner.name == 'shadow' && t.sticky==false) {
-        var text = talk.text,
-            images = talk.images;
-        var div = document.createElement('div');
-        div.innerHTML = text;
-        //console.log(div.querySelectorAll('e[type=hashtag]'));
-        var tags = div.querySelectorAll('e[type=hashtag]');
-        if (tags) {
-
-            tags = Array.from(tags, t => {
-                t=decodeURIComponent(t.title);
-                return t.slice(1,t.length-1);
-            })
-        }
-        var urls = div.querySelectorAll('e[type=web]');
-        if (urls) {
-            urls = Array.from(urls, u => {
-
-                return { url: decodeURIComponent(u.getAttribute('href')), title: decodeURIComponent(u.getAttribute('title').replace(/\+/ig, ' ')) }
-            })
-        }
-
-        res.push({
-            id: id,
-            title: div.innerText.trim(),
-            likes_count: t.likes_count,
-            comments_count: t.comments_count,
-            readers_count: t.readers_count,
-            reading_count: t.reading_count,
-            rewards_count: t.rewards_count,
-            images: images,
-            tags: tags,
-            urls: urls,
-            create_time: t.create_time
-        })
-    }
-})
-
-   */
-    </script>
+    <script src="dist/build.js"></script>
 
 </body>
 
